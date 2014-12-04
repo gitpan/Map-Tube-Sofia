@@ -11,7 +11,7 @@ use Moo;
 use namespace::clean;
 
 # Version.
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 # Get XML.
 has xml => (
@@ -93,7 +93,6 @@ For more information about Sofia Map, click L<here|https://en.wikipedia.org/wiki
 
  # Pragmas.
  use strict;
- use utf8;
  use warnings;
 
  # Modules.
@@ -126,7 +125,8 @@ L<Map::Tube::Delhi>,
 L<Map::Tube::London>,
 L<Map::Tube::NYC>,
 L<Map::Tube::Prague>,
-L<Map::Tube::Tokyo>.
+L<Map::Tube::Tokyo>,
+L<Map::Tube::Warsaw>.
 
 =head1 REPOSITORY
 
@@ -140,12 +140,12 @@ L<http://skim.cz>
 
 =head1 LICENSE AND COPYRIGHT
 
- © Michal Špaček 2014
+ © 2014 Michal Špaček
  Artistic License
  BSD 2-Clause License
 
 =head1 VERSION
 
-0.01
+0.02
 
 =cut
