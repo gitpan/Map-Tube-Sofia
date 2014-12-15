@@ -1,5 +1,5 @@
 ---
-abstract: 'Interface to the Sofia Tube Map.'
+abstract: 'Interface to the Sofia Metro Map.'
 author:
   - 'Michal Spacek <skim@cpan.org>'
 build_requires:
@@ -28,7 +28,7 @@ no_index:
     - t
 requires:
   File::Share: 0
-  Map::Tube: '2.26'
+  Map::Tube: '2.41'
   Moo: 0
   namespace::clean: 0
   perl: 5.8.0
@@ -37,4 +37,4 @@ resources:
   homepage: https://github.com/tupinek/Map-Tube-Sofia
   license: http://opensource.org/licenses/artistic-license-2.0.php
   repository: git://github.com/tupinek/Map-Tube-Sofia
-version: '0.02'
+version: '0.03'

@@ -1,10 +1,14 @@
 NAME
-    Map::Tube::Sofia - Interface to the Sofia Tube Map.
+    Map::Tube::Sofia - Interface to the Sofia Metro Map.
 
 SYNOPSIS
      use Map::Tube::Sofia;
      my $obj = Map::Tube::Sofia->new;
+     my $routes_ar = $obj->get_all_routes($from, $to);
+     my $station = $obj->get_node_by_id($station_id);
+     my $station = $obj->get_node_by_name($station_name);
      my $route = $obj->get_shortest_route($from, $to);
+     my $metro_name = $obj->name;
      my $xml_file = $obj->xml;
 
 DESCRIPTION
@@ -18,9 +22,25 @@ METHODS
     "new()"
              Constructor.
 
+    "get_all_routes($from, $to)" [EXPERIMENTAL]
+             Get all routes from station to station.
+             Returns reference to array with Map::Tube::Route objects.
+
+    "get_node_by_id($station_id)"
+             Get station node by id.
+             Returns Map::Tube::Node object.
+
+    "get_node_by_name($station_name)"
+             Get station node by name.
+             Returns Map::Tube::Node object.
+
     "get_shortest_route($from, $to)"
-             Get shortest route between $from and $to node name. Node name is case insensitive.
-             Returns back the node sequence in string.
+             Get shortest route between $from and $to node names. Node names in $from and $to are case insensitive.
+             Returns Map::Tube::Route object.
+
+    "name()"
+             Get metro name.
+             Returns string with metro name.
 
     "xml()"
              Get XML specification of Sofia metro.
@@ -71,11 +91,15 @@ DEPENDENCIES
     File::Share, Map::Tube, Moo, namespace::clean.
 
 SEE ALSO
-    Map::Tube, Map::Tube::Barcelona, Map::Tube::Delhi, Map::Tube::London,
-    Map::Tube::NYC, Map::Tube::Prague, Map::Tube::Tokyo, Map::Tube::Warsaw.
+    Map::Tube, Map::Tube::Barcelona, Map::Tube::Berlin,
+    Map::Tube::Bucharest, Map::Tube::Delhi, Map::Tube::Kazan,
+    Map::Tube::Kharkiv, Map::Tube::Kiev, Map::Tube::London,
+    Map::Tube::Minsk, Map::Tube::Moscow, Map::Tube::NYC, Map::Tube::Prague,
+    Map::Tube::Samara, Map::Tube::Tbilisi, Map::Tube::Tokyo,
+    Map::Tube::Warsaw.
 
 REPOSITORY
-    <https://github.com/Manwar/Map-Tube-Sofia>
+    <https://github.com/tupinek/Map-Tube-Sofia>
 
 AUTHOR
     Michal Špaček <mailto:skim@cpan.org>
@@ -88,5 +112,5 @@ LICENSE AND COPYRIGHT
      BSD 2-Clause License
 
 VERSION
-    0.02
+    0.03
 

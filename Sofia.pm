@@ -11,7 +11,7 @@ use Moo;
 use namespace::clean;
 
 # Version.
-our $VERSION = 0.02;
+our $VERSION = 0.03;
 
 # Get XML.
 has xml => (
@@ -31,13 +31,17 @@ __END__
 
 =head1 NAME
 
-Map::Tube::Sofia - Interface to the Sofia Tube Map.
+Map::Tube::Sofia - Interface to the Sofia Metro Map.
 
 =head1 SYNOPSIS
 
  use Map::Tube::Sofia;
  my $obj = Map::Tube::Sofia->new;
+ my $routes_ar = $obj->get_all_routes($from, $to);
+ my $station = $obj->get_node_by_id($station_id);
+ my $station = $obj->get_node_by_name($station_name);
  my $route = $obj->get_shortest_route($from, $to);
+ my $metro_name = $obj->name;
  my $xml_file = $obj->xml;
 
 =head1 DESCRIPTION
@@ -55,10 +59,30 @@ For more information about Sofia Map, click L<here|https://en.wikipedia.org/wiki
 
  Constructor.
 
+=item C<get_all_routes($from, $to)> [EXPERIMENTAL]
+
+ Get all routes from station to station.
+ Returns reference to array with Map::Tube::Route objects.
+
+=item C<get_node_by_id($station_id)>
+
+ Get station node by id.
+ Returns Map::Tube::Node object.
+
+=item C<get_node_by_name($station_name)>
+
+ Get station node by name.
+ Returns Map::Tube::Node object.
+
 =item C<get_shortest_route($from, $to)>
 
- Get shortest route between $from and $to node name. Node name is case insensitive.
- Returns back the node sequence in string.
+ Get shortest route between $from and $to node names. Node names in $from and $to are case insensitive.
+ Returns Map::Tube::Route object.
+
+=item C<name()>
+
+ Get metro name.
+ Returns string with metro name.
 
 =item C<xml()>
 
@@ -121,16 +145,25 @@ L<namespace::clean>.
 
 L<Map::Tube>,
 L<Map::Tube::Barcelona>,
+L<Map::Tube::Berlin>,
+L<Map::Tube::Bucharest>,
 L<Map::Tube::Delhi>,
+L<Map::Tube::Kazan>,
+L<Map::Tube::Kharkiv>,
+L<Map::Tube::Kiev>,
 L<Map::Tube::London>,
+L<Map::Tube::Minsk>,
+L<Map::Tube::Moscow>,
 L<Map::Tube::NYC>,
 L<Map::Tube::Prague>,
+L<Map::Tube::Samara>,
+L<Map::Tube::Tbilisi>,
 L<Map::Tube::Tokyo>,
 L<Map::Tube::Warsaw>.
 
 =head1 REPOSITORY
 
-L<https://github.com/Manwar/Map-Tube-Sofia>
+L<https://github.com/tupinek/Map-Tube-Sofia>
 
 =head1 AUTHOR
 
@@ -146,6 +179,6 @@ L<http://skim.cz>
 
 =head1 VERSION
 
-0.02
+0.03
 
 =cut

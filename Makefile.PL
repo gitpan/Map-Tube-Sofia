@@ -6,7 +6,7 @@ use warnings;
 use inc::Module::Install;
 
 # Definition.
-abstract 'Interface to the Sofia Tube Map.';
+abstract 'Interface to the Sofia Metro Map.';
 author 'Michal Spacek <skim@cpan.org>';
 install_share 'share';
 license 'bsd';
@@ -14,7 +14,7 @@ license 'artistic_2';
 name 'Map-Tube-Sofia';
 readme_from 'Sofia.pm';
 requires 'File::Share' => 0;
-requires 'Map::Tube' => '2.26';
+requires 'Map::Tube' => '2.41';
 requires 'Moo' => 0;
 requires 'namespace::clean' => 0;
 requires 'perl' => '5.8.0';
@@ -29,7 +29,7 @@ test_requires 'Test::NoWarnings' => 0;
 test_requires 'Test::Pod' => 0;
 test_requires 'Test::Pod::Coverage' => 0;
 tests_recursive;
-version '0.02';
+version '0.03';
 
 # Run.
 WriteAll();
