@@ -11,7 +11,7 @@ use Moo;
 use namespace::clean;
 
 # Version.
-our $VERSION = 0.03;
+our $VERSION = 0.04;
 
 # Get XML.
 has xml => (
@@ -38,9 +38,11 @@ Map::Tube::Sofia - Interface to the Sofia Metro Map.
  use Map::Tube::Sofia;
  my $obj = Map::Tube::Sofia->new;
  my $routes_ar = $obj->get_all_routes($from, $to);
+ my $lines_ar = $obj->get_lines;
  my $station = $obj->get_node_by_id($station_id);
  my $station = $obj->get_node_by_name($station_name);
  my $route = $obj->get_shortest_route($from, $to);
+ my $stations_ar = $obj->get_stations($line);
  my $metro_name = $obj->name;
  my $xml_file = $obj->xml;
 
@@ -64,6 +66,11 @@ For more information about Sofia Map, click L<here|https://en.wikipedia.org/wiki
  Get all routes from station to station.
  Returns reference to array with Map::Tube::Route objects.
 
+=item C<get_lines()>
+
+ Get lines in metro map.
+ Returns reference to array with Map::Tube::Line objects.
+
 =item C<get_node_by_id($station_id)>
 
  Get station node by id.
@@ -78,6 +85,11 @@ For more information about Sofia Map, click L<here|https://en.wikipedia.org/wiki
 
  Get shortest route between $from and $to node names. Node names in $from and $to are case insensitive.
  Returns Map::Tube::Route object.
+
+=item C<get_stations($line)>
+
+ Get list of stations for concrete metro line.
+ Returns reference to array with Map::Tube::Node objects.
 
 =item C<name()>
 
@@ -134,6 +146,44 @@ For more information about Sofia Map, click L<here|https://en.wikipedia.org/wiki
  # Output like:
  # XML file: .*/sofia-map.xml
 
+=head1 EXAMPLE3
+
+ # Pragmas.
+ use strict;
+ use warnings;
+
+ # Modules.
+ use Map::Tube::GraphViz;
+ use Map::Tube::GraphViz::Utils qw(node_color_without_label);
+ use Map::Tube::Sofia;
+
+ # Object.
+ my $obj = Map::Tube::Sofia->new;
+
+ # GraphViz object.
+ my $g = Map::Tube::GraphViz->new(
+         'callback_node' => \&node_color_without_label,
+         'driver' => 'neato',
+         'tube' => $obj,
+ ); 
+
+ # Get graph to file.
+ $g->graph('Sofia.png');
+
+ # Print file.
+ system "ls -l Sofia.png";
+
+ # Output like:
+ # -rw-r--r-- 1 skim skim 78098 Dec 23 11:47 Sofia.png
+
+=begin html
+
+<a href="https://raw.githubusercontent.com/tupinek/Map-Tube-Sofia/master/images/Sofia.png">
+  <img src="https://raw.githubusercontent.com/tupinek/Map-Tube-Sofia/master/images/Sofia.png" alt="Софийско метро" width="300px" height="300px" />
+</a>
+
+=end html
+
 =head1 DEPENDENCIES
 
 L<File::Share>,
@@ -144,22 +194,30 @@ L<namespace::clean>.
 =head1 SEE ALSO
 
 L<Map::Tube>,
+L<Map::Tube::GraphViz>,
+L<Map::Tube::Text::Table>.
+
 L<Map::Tube::Barcelona>,
 L<Map::Tube::Berlin>,
 L<Map::Tube::Bucharest>,
 L<Map::Tube::Delhi>,
+L<Map::Tube::Dnipropetrovsk>,
 L<Map::Tube::Kazan>,
 L<Map::Tube::Kharkiv>,
 L<Map::Tube::Kiev>,
 L<Map::Tube::London>,
 L<Map::Tube::Minsk>,
 L<Map::Tube::Moscow>,
+L<Map::Tube::Novosibirsk>,
 L<Map::Tube::NYC>,
 L<Map::Tube::Prague>,
+L<Map::Tube::SaintPetersburg>,
 L<Map::Tube::Samara>,
 L<Map::Tube::Tbilisi>,
 L<Map::Tube::Tokyo>,
-L<Map::Tube::Warsaw>.
+L<Map::Tube::Vienna>,
+L<Map::Tube::Warsaw>,
+L<Map::Tube::Yekaterinburg>.
 
 =head1 REPOSITORY
 
@@ -179,6 +237,6 @@ L<http://skim.cz>
 
 =head1 VERSION
 
-0.03
+0.04
 
 =cut
